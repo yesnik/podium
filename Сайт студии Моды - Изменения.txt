@@ -1,0 +1,42 @@
+
+
+11.12.2012
+- Начал вести этот файл.
+* Картинки, загружаемые на страницу, не выводятся.
+    Нужно поправить было пути в шаблоне и в настройках sorl по адресу:
+    sorl/thumbnail/conf/defaults.py
+    THUMBNAIL_PREFIX = 'static/cache/'
+    Это приведет к тому, что кэш будет хранится в папке static относительно корня сайта.
+    
+    В шаблоне page_detail.html:
+    {% if images %}
+        <div class="images-set">
+        {% endif %}
+        
+        {% for img in images %}
+            <div class="pic_wrap">
+                <a rel="gallery" href="/{{ img.image }}" >
+                    {% thumbnail img.image "100x150" crop="center" as im %}
+                        <img src="{{ im.url }}">
+                    {% endthumbnail %}
+                </a>
+                <p>{{ img.title }}</p>
+            </div>
+        {% endfor %}
+        
+    {% if images %}
+    </div>
+    {% endif %}
+    
+* Подключил fancybox. Теперь картинки разворачиваются.
+* В модуле persons сделал отображение фото Контакта. Подключил fancybox.
+* В админке сделал добавляемых персон свернутыми:
+    в файле blog/admin.py:
+    class PersonInline(admin.StackedInline):
+        model = Person
+        #количество отображаемых эл-тов
+        extra = 2
+        fieldsets = [
+            ('Подробнее', {'fields': ['fio', 'desc', 'image'], 'classes': ['collapse']}),
+        ]
+

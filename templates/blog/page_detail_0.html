@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+
+    {% block menu %}
+
+        {% for item in menu %}
+            <li class="leftline"><a href="/blog/{{item.id}}">{{item.title}}</a></li>
+        {% endfor %}
+
+    {% endblock %}
+
+    {% block content %}
+        <h1>{{page.title}}</h1>
+        {% autoescape off %}
+            <p>{{page.content}}</p>
+        {% endautoescape %}
+        
+        {% load thumbnail %}
+        {% for img in images %}
+            <div style="float:left; margin: 5px 10px">
+                <a href="/{{ img.image }}" >
+                    {% thumbnail img.image "100x150" crop="center" as im %}
+                        <img src="{{STATIC_URL}}uploads{{ im.url }}">
+                    {% endthumbnail %}
+                </a>
+                <p>{{ img.title }}</p>
+            </div>
+        {% endfor %}
+        
+    {% endblock %}
+
+    {% block sidebar %}
+        {{sidebar.content}}
+    {% endblock %} 
+
+
+
+    {% block footer %}
+        {% autoescape off %}
+            {{ footer.content }}
+                
+        {% endautoescape %}
+    {% endblock %}

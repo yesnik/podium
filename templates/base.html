@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Студенческий подиум: Новый взгляд - 2012</title>
+    
+	<link rel="stylesheet" href="{{STATIC_URL}}css/style.css" type="text/css" media="screen">
+    <link href="{{STATIC_URL}}images/favicon.ico" rel="shortcut icon">
+    <!--[if lt IE 8]><link rel="stylesheet" href="{{STATIC_URL}}css/ie.css" type="text/css" media="screen, projection"><![endif]-->
+    <script src="{{STATIC_URL}}js/jquery-1.8.3.min.js" type="text/javascript"></script>
+    <!-- Fancybox -->
+    <script type="text/javascript" src="{{STATIC_URL}}js/fancybox/jquery.mousewheel-3.0.6.pack.js"></script>
+    <script type="text/javascript" src="{{STATIC_URL}}js/fancybox/jquery.fancybox.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}js/fancybox/jquery.fancybox.css?v=2.1.2" media="screen" />
+
+    <script type="text/javascript">
+      $(document).ready(function() {
+
+        //Fancybox
+        $("a[rel=gallery]").fancybox({
+        'overlayColor' : '#666',
+        'overlayOpacity': 0.5,
+        'speedIn' : 600,
+        'speedOut' : 200,
+        'changeFade' : 'medium',
+        'transitionIn' : 'elastic',
+        'transitionOut' : 'elastic'
+        });
+      }); 
+    </script>
+    <!-- End Fancybox -->
+
+</head>
+
+<body>
+<div id="container">
+	<!-- header -->
+	<div id="header">
+        <a href="/" title="На Главную"><img class="girls" alt="Девушки" src="{{STATIC_URL}}images/girl.jpg"></a>
+        <a href="/" title="На Главную"><img class="logo" alt="Логотип Студенческий подиум Новый взгляд" src="{{STATIC_URL}}images/logo.png"></a>
+    </div><!-- /header -->
+    
+    <!-- menu -->
+    <div id="menu">
+        <ul>
+            {% block menu %}
+  
+            <li class="active">УЧАСТНИКИ</li>
+            <li class="leftline"><a href="http://podium.uapa.ru/zhuri.html">ЖЮРИ</a></li>
+            <li class="leftline"><a href="http://podium.uapa.ru/sponsors.html">СПОНСОРЫ</a></li>
+            <li class="leftline"><a href="http://podium.uapa.ru/photo.html">ФОТО</a></li>
+            <li class="leftline"><a href="http://podium.uapa.ru/prizers.html">ПРИЗЕРЫ</a></li>
+            <li class="leftline"><a href="http://podium.uapa.ru/docs.html">ДОКУМЕНТЫ</a></li>
+            <li class="leftline"><a href="http://podium.uapa.ru/contacts.html">КОНТАКТЫ</a></li>
+       
+            {% endblock %}
+        </ul>
+    </div>
+    <!-- /menu -->
+    
+    <!-- wrap -->
+    <div id="wrap">
+   		
+        <div id="content">
+            {% block content %}
+            
+                <h1>УЧАСТНИКИ</h1>
+                <p>Традиционно в творческом состязании принимают участие студенты и аспиранты вузов, учащиеся средних специальных учебных заведений, независимо от формы обучения и профиля учебного заведения.</p>
+                <ol>
+                    <li>Гуманитарный университет (10 заявок);</li> 
+                    <li>Казанский Федеральный Университет (5 заявок);</li>
+                    <li>Областной техникум дизайна и сервиса (8 заявок);</li> 
+                    <li>Омский государственный институт сервиса (ОГИС) (4 заявки);</li>
+                    <li>Российский государственный профессионально-педагогический университет (5 заявки);</li> 
+                    <li>Санкт-Петербургский университет технологии и дизайна (1 заявка);</li>
+                    <li>Тамбовский государственный технический университет (4 заявки).</li>
+                    <li>Томский государственный университет (2 заявки);</li> 
+                    <li>Тюменская государственная академия культуры, искусств и социальных технологий (2 заявки);</li>
+                    <li>Удмуртский государственный университет (5 заявок);</li>
+                    <li>Уральская государственная архитектурно-художественная академия (2 заявка);</li> 
+                    <li>Уральский государственный лесотехнический университет (1 заявка);</li> 
+                    <li>Уральский государственный педагогический университет (1 заявки);</li> 
+                    <li>Уральский государственный технический университет – УрФУ (1 заявка);</li> 
+                    <li>Уральский государственный университет путей сообщения (1 заявка);</li> 
+                    <li>Уральский институт Президентской академии (бывший УрАГС) (12 заявок);</li>
+                    <li>Челябинский государственный педагогический университет (2 заявки);</li> 
+                    <li>Шадринский государственный педагогический институт (4 заявки);</li>
+                </ol>
+               
+            {% endblock %}
+        </div>    
+      	
+        <div id="sidebar">
+        {% autoescape off %}
+            {% block sidebar %}
+            
+        	<div id="ad">
+                <p>Увлекаешься модой?<br> 
+				Моделируешь одежду?<br>
+                Создаешь креативные образы?
+                </p>
+                <a class="anketa" href="http://podium.uapa.ru/docs/zayavka.doc">Заполни заявку</a>
+            </div>
+        	<!-- info -->
+            <div id="info">
+                <p>Конкурс проходит при поддержке:</p>
+                <ul>
+                    <li>Министерства торговли, питания и услуг Свердловской области;</li> 
+                    <li>Министерства общего и профессионального образования Свердловской области;</li>
+                    <li>Министерства физической культуры, спорта и молодежной политики Свердловской области;</li>
+                    <li>Управления культуры Администрации города&nbsp;Екатеринбурга;</li>
+					<li>ФБГОУ ВПО «Уральский институт-филиал Российской академии народного хозяйства и государственной службы при Президенте РФ» (УрАГС)</li>
+                    <li>Совета Ректоров ВУЗов Свердловской области;</li> 
+                    <li>Свердловской ассоциации профсоюзных организаций студентов (СвАПОС);</li> 
+                </ul>
+            </div><!-- /info -->
+            
+            {% endblock %}
+        {% endautoescape %}
+        </div><!-- /sidebar -->    
+    </div><!-- /wrap -->
+
+    <!-- footer -->
+    <div id="footer">
+        {% block footer %}
+    	<p>© 2012 Сайт Студии моды РАНХиГС</p>
+        {% endblock %}
+    </div><!-- /footer -->
+</div>
+</body>
+</html>
