@@ -1,0 +1,28 @@
+﻿{% extends "base.html" %}
+
+{% block content %}
+
+    {% load thumbnail %}
+    
+    {% for zhuri in zhuri_list %}
+        
+        {% ifchanged %}
+            <h3 class="button">Список жюри {{ zhuri.year }} года</h3>
+
+        {% endifchanged %}
+        
+        <div class="zhuri">
+            {% thumbnail zhuri.image "65x86" crop="center" as im %}
+                <img alt="" src="{{ im.url }}">
+            {% endthumbnail %}
+            <h3>{{ zhuri.fio }}</h3>
+            <p>{{ zhuri.desc }}</p>
+        </div>
+ 
+    {% empty %}
+        <div class="zhuri">
+            <p>Членов жюри пока нет.</p>
+        </div>
+    {% endfor %}
+
+{% endblock %}

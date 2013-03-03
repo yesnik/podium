@@ -8,7 +8,12 @@ urlpatterns = patterns('',
     #
     url(r'^$',PageListView.as_view()),
             
-    url(r'^(?P<pk>\d+)/$', PageView.as_view()),
+    #url(r'^(?P<pk>\d+)/$', PageView.as_view()),
+    url(r'^(?P<pk>\d+)/$', DetailView.as_view(
+        model=Page,
+        context_object_name='page',
+        template_name='blog/blog_detail.html'
+    )),
             
     #url(r'^(?P<pk>\d+)/results/$', PollResultsView.as_view(), name='poll_results'),
         

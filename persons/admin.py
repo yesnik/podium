@@ -2,8 +2,8 @@
 from persons.models import *
 
 class PersonAdmin(admin.ModelAdmin):
-    fieldsets = [
-        ('Личности', {'fields': ['fio', 'desc', 'image'], 'classes': ['collapse']}),
-    ]
+    fields = ['fio', 'desc', 'phone', 'image']
 
 admin.site.register(Person, PersonAdmin)
+admin.site.register(Zhuri)
+

@@ -6,5 +6,9 @@ class Pic(models.Model):
     image = models.ImageField(upload_to="static/uploads")
     page = models.ForeignKey(Page)
     
+    class Meta:
+        verbose_name = "Картинка"
+        verbose_name_plural = "Картинки"
+    
     def __unicode__(self):
         return self.title

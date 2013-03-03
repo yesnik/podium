@@ -21,6 +21,9 @@ urlpatterns = patterns('',
     #Подключаем приложение polls
     url(r'^polls/', include('polls.urls')),
     
+    #Подключаем приложение persons
+    url(r'^persons/', include('persons.urls')),
+    
     #Подключаем приложение blog
     url(r'^$', include('blog.urls')),
     url(r'^blog/', include('blog.urls')),

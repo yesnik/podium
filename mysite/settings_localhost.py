@@ -1,4 +1,4 @@
-﻿# Django settings for mysite project.
+# Django settings for mysite project.
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -28,7 +28,7 @@ TIME_ZONE = 'America/Chicago'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
-LANGUAGE_CODE = 'ru-RU'
+LANGUAGE_CODE = 'en-us'
 
 SITE_ID = 1
 
@@ -131,10 +131,9 @@ INSTALLED_APPS = (
     'files',
     'sorl.thumbnail',
     'persons',
-    'menu',
 )
 
-
+'''
 TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.debug',
     'django.core.context_processors.i18n',
@@ -142,11 +141,8 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.static',
     'django.contrib.auth.context_processors.auth',
     'django.contrib.messages.context_processors.messages',
-    
-    #Добавлен для django-menu
-    'django.core.context_processors.request'
 )
-
+'''
 
 UPLOADS_DIR = 'static/'
 

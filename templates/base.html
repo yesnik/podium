@@ -46,14 +46,11 @@
         <ul>
             {% block menu %}
   
-            <li class="active">УЧАСТНИКИ</li>
-            <li class="leftline"><a href="http://podium.uapa.ru/zhuri.html">ЖЮРИ</a></li>
-            <li class="leftline"><a href="http://podium.uapa.ru/sponsors.html">СПОНСОРЫ</a></li>
-            <li class="leftline"><a href="http://podium.uapa.ru/photo.html">ФОТО</a></li>
-            <li class="leftline"><a href="http://podium.uapa.ru/prizers.html">ПРИЗЕРЫ</a></li>
-            <li class="leftline"><a href="http://podium.uapa.ru/docs.html">ДОКУМЕНТЫ</a></li>
-            <li class="leftline"><a href="http://podium.uapa.ru/contacts.html">КОНТАКТЫ</a></li>
-       
+                {% load menubuilder %}
+                {% menu headernavigation %}
+                {% for item in menuitems %}
+                    <li {% if item.current %} class='active'{% endif %}><a href="{{ item.url }}" title="{{ item.title|escape }}">{{ item.title }}</a></li>
+                {% endfor %}
             {% endblock %}
         </ul>
     </div>
