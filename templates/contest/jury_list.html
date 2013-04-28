@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <h2>Список жюри</h2>
+    {% for item in jury_year_list %}
+        <h3>{{ item.year }}</h3>
+        <ol>
+            {% for jury in item.jury_list %} 
+                <li><a href="{% url 'jury_detail' pk=jury.id %}">{{ jury.fio }}</a></li>
+
+            {% empty %}
+                <li>Для этого года жюри не найдено</li>
+            {% endfor %}
+        </ol>
+    {% endfor %}
+
+{% endblock %}

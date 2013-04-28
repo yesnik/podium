@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <ol>
+    
+    {% for author in author_list %}
+        <li>
+            <h3><a href="{% url "author_detail" pk=author.id %}">{{ author.fio }}</a></h3>
+        </li>
+    {% endfor %}
+    
+    </ol>
+{% endblock %}

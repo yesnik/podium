@@ -1,0 +1,24 @@
+﻿{% extends "base.html" %}
+
+{% load collection_extras %}
+
+{% block content %}
+
+	<h2>{{ author.fio|addprefix:"Участник" }}</h2>
+    <h4>Дата рождения</h4>
+    <p>{{ author.birthday }}</p>
+    <h4>Вуз</h4>
+    <p>{{ author.vuz }}</p>
+    <h4>Об авторе</h4>
+    <p>{{ author.about }}</p>
+
+    {% if author_collection_list %}
+        <h4>Коллекции автора ({{ author_collection_list|length }})</h4>
+        <ol>
+        {% for collection in author_collection_list %}
+            <li><a href="{% url 'collection_detail' collection.id %}">{{ collection.title }}</a></li>
+        {% endfor %}
+        </ol>
+    {% endif %}
+
+{% endblock %}

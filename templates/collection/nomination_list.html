@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Список номинаций</h2>
+    <ol>
+    {% for nomination in nomination_list %}
+        <li>
+            <h3>
+                <a href="{% url 'nomination_collections' nomination.nomination_url %}">
+                {{ nomination.title }}
+                </a>
+            </h3>
+        </li>
+    {% endfor %}
+    
+    </ol>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Список коллекций</h2>
+
+    <ol>
+    {% for collection in collection_list %}
+        <li>
+            <a href="{% url "collection_detail" pk=collection.id %}">{{ collection.title }}</a> ({{ collection.author.all|join:', ' }})
+        </li>
+    {% endfor %}
+    
+    </ol>
+{% endblock %}

@@ -1,0 +1,24 @@
+﻿{% extends "base.html" %}
+
+{% load collection_extras %}
+
+{% block content %}
+
+	<h2>{{ collection.title|cut:'а' }}</h2>
+	<h4>Авторы:</h4>
+	<ul>
+	{% for author in collection.author.all %}
+		<li><a href="{% url 'author_detail' author.id %}">{{author.fio}}</a> 
+			(вуз: {{ author.vuz.name_short }})</li>
+	{% empty %}
+		<li>Автор не определен</li>
+	{% endfor %}
+	</ul>
+
+	<h4>Об авторах:</h4>
+	{{collection|get_about}}
+
+    <h4>Описание:</h4>
+    <p>{{ collection.description }}</p>
+
+{% endblock %}

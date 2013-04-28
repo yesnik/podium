@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <h1>Список жюри {{ year }}</h1>
+    <ol>
+    
+    {% for jury in jury_list %}
+        <li>
+            <h3>{{ jury.fio }}</h3>
+        </li>
+    {% empty %}
+    	<li>Не найдено ни одного из членов жюри</li>
+    {% endfor %}
+    
+    </ol>
+{% endblock %}

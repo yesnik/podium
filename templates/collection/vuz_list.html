@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Список вузов</h2>
+    <ol>
+    
+    {% with count=555 %}
+
+    {% load collection_extras %}
+
+    {% for vuz in vuz_list %}
+        <li>
+            {{ vuz.name }}
+            (<a href="{% url "vuz_collections" vuz=vuz.vuz_url %}">коллекций: {{ vuz.id|getCollectionSum }}</a>)
+        </li>
+    {% endfor %}
+
+    {% endwith %}
+    
+    </ol>
+{% endblock %}
