@@ -1,5 +1,5 @@
 ﻿from django.contrib import admin
-from contest.models import Contest, Jury
+from contest.models import Contest, Jury, Sponsor
 
 
 class JuryAdmin(admin.ModelAdmin):
@@ -12,5 +12,11 @@ class ContestAdmin(admin.ModelAdmin):
     order = '-year'
 
 
+class SponsorAdmin(admin.ModelAdmin):
+    list_display = ('title', 'site',)
+    filter_horizontal = ('contest',)
+
+
 admin.site.register(Contest, ContestAdmin)
 admin.site.register(Jury, JuryAdmin)
+admin.site.register(Sponsor, SponsorAdmin)

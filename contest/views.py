@@ -1,5 +1,5 @@
 ﻿from django.views.generic import DetailView, ListView
-from contest.models import Jury, Contest
+from contest.models import Jury, Contest, Sponsor
 
 
 class JuryContestListView(ListView):
@@ -40,4 +40,28 @@ class JuryYearsListView(ListView):
 
         context = super(JuryYearsListView, self).get_context_data(**kwargs)
         context['jury_year_list'] = jury_year_list
+        return context
+
+
+class SponsorYearsListView(ListView):
+    """
+    Список спонсоров по годам
+    """
+    model = Sponsor
+    context_object_name='sponsor_list'
+    template_name='contest/sponsor_list.html'
+
+    def get_context_data(self, *args, **kwargs):
+        years = Contest.objects.values('year').order_by('-year')
+        sponsor_full_list = Sponsor.objects.all()
+        
+        sponsor_year_list = []
+
+        for item in years:
+            year = item['year']
+            dict_item = {'year': year, 'sponsor_list': sponsor_full_list.filter(contest__year=year)}
+            sponsor_year_list.append(dict_item)
+
+        context = super(SponsorYearsListView, self).get_context_data(**kwargs)
+        context['sponsor_year_list'] = sponsor_year_list
         return context

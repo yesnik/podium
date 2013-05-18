@@ -21,7 +21,7 @@ class Jury(models.Model):
     """
     Член жюри конкурса
     """
-    photo = models.ImageField(upload_to='images/jury')
+    photo = models.ImageField(upload_to='images/jury', verbose_name='Фото')
     fio = models.CharField(max_length=150, verbose_name='Ф.И.О.')
     position = models.CharField(max_length=150, verbose_name='Должность')
     contest = models.ManyToManyField(Contest)
@@ -32,3 +32,21 @@ class Jury(models.Model):
     class Meta:
         verbose_name = 'Жюри'
         verbose_name_plural = 'Жюри'
+
+
+class Sponsor(models.Model):
+    """
+    Спонсоры конкурса
+    """
+    title = models.CharField(max_length=150, verbose_name='Название')
+    logo = models.ImageField(upload_to='images/sponsors', verbose_name='Логотип')
+    site = models.URLField(verbose_name='Официальный сайт', blank=True)
+    description = models.TextField(verbose_name='Описание', blank=True)
+    contest = models.ManyToManyField(Contest)
+
+    def __unicode__(self):
+        return self.title
+        
+    class Meta:
+        verbose_name = 'Спонсор'
+        verbose_name_plural = 'Спонсоры'

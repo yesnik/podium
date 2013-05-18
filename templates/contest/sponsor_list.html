@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <h2>Список спонсоров</h2>
+
+    {% for item in sponsor_year_list %}
+
+        {% load thumbnail %}
+
+        {% if forloop.counter > 1 %}
+            <h3 class="button">{{ item.year }}</h3>
+            <div class="text-show">
+        {% else %}
+            <h2>{{ item.year }}</h2>
+        {% endif %}
+            <div class="images-holder">
+            {% for sponsor in item.sponsor_list %} 
+                {% if sponsor.site %}
+                <a href="{{ sponsor.site }}" target="_blank">
+                {% endif %}
+                    <img src="/{{ MEDIA_URL }}{{ sponsor.logo }}" alt="{{ sponsor.title }}" />
+                {% if sponsor.site %}
+                </a>
+                {% endif %}
+            {% empty %}
+                Для этого года спонсоров не найдено
+            {% endfor %}
+            </div>
+
+        {% if forloop.counter > 1 %}
+        </div>
+        {% endif %}
+
+    {% endfor %}
+
+{% endblock %}
