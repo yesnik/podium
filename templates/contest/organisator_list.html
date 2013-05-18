@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    {% load thumbnail %}
+
+    <h2>Организаторы</h2>
+
+    {% with organisator_list=organisator_list|dictsort:"responsibility_area.order" %}
+
+        {% for organisator in organisator_list %}
+
+            {% ifchanged %}
+                <h2>{{ organisator.responsibility_area }}</h2>
+            {% endifchanged %}
+
+            <div class="organisators">
+
+                {% thumbnail organisator.photo "65x86" crop="center" as im %}
+                    <img src="/{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="{{ jury.fio }}">
+                {% endthumbnail %}
+                <h3>{{ organisator.fio }}</h3>
+                <p>{{ organisator.position }}</p>
+                <p>{{ organisator.phone }}</p>
+            </div>
+          
+        {% endfor %}
+
+    {% endwith %}
+
+{% endblock %}

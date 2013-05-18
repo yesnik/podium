@@ -50,3 +50,38 @@ class Sponsor(models.Model):
     class Meta:
         verbose_name = 'Спонсор'
         verbose_name_plural = 'Спонсоры'
+
+
+class OrganisatorArea(models.Model):
+    """
+    Зоны ответственности организатора конкурса
+    """
+    title = models.CharField(max_length=150, verbose_name='Зона ответственности',
+        help_text = 'Например, "Техническая группа", "Дирекция"')
+    order = models.IntegerField(verbose_name='Порядок следования',
+        help_text = 'Зона ответственности с меньшим порядком будет выводиться первее')
+
+    def __unicode__(self):
+        return self.title
+        
+    class Meta:
+        verbose_name = 'Зона ответственности организатора'
+        verbose_name_plural = 'Зоны ответственности организаторов'
+
+
+class Organisator(models.Model):
+    """
+    Организаторы конкурса
+    """
+    fio = models.CharField(max_length=150, verbose_name='Ф.И.О.')
+    photo = models.ImageField(upload_to='images/sponsors', verbose_name='Фото', blank=True)
+    position = models.CharField(max_length=150, verbose_name='Должность')
+    phone = models.CharField(max_length=150, verbose_name='Телефон', blank=True)
+    responsibility_area = models.ForeignKey(OrganisatorArea)
+
+    def __unicode__(self):
+        return self.fio
+        
+    class Meta:
+        verbose_name = 'Организатор'
+        verbose_name_plural = 'Организаторы'

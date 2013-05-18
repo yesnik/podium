@@ -1,6 +1,6 @@
 ﻿from django.conf.urls import patterns, include, url
 from django.views.generic import DetailView, ListView
-from contest.models import Jury
+from contest.models import Jury, Organisator
 from contest.views import JuryContestListView, JuryYearsListView, SponsorYearsListView
 
 
@@ -23,4 +23,11 @@ urlpatterns = patterns('',
     #/sponsor/
     url(r'^sponsor/$', SponsorYearsListView.as_view(),
         name="sponsor_list"),
+
+    #/organisators/
+    url(r'^organisators/$', ListView.as_view(
+        model=Organisator,
+        template_name="organisator_list.html",
+        context_object_name='organisator_list'),
+        name="organisator_list"),
 )
