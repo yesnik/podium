@@ -201,7 +201,7 @@ body{
 	font-size:14px;
 	text-align:left;
 	color:#BD3C3C;
-	padding:8px 0 5px 18px;
+	padding:10px 0 5px;
 	cursor:pointer;
 }
 .button:hover{color:#fe3C3C !important;}
@@ -300,7 +300,6 @@ body{
 	margin:0 auto;
 }
 .text-show{
-	padding:5px 10px 10px 18px;
     display:none;
 }
 .video{

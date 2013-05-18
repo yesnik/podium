@@ -21,6 +21,7 @@ class Jury(models.Model):
     """
     Член жюри конкурса
     """
+    photo = models.ImageField(upload_to='images/jury')
     fio = models.CharField(max_length=150, verbose_name='Ф.И.О.')
     position = models.CharField(max_length=150, verbose_name='Должность')
     contest = models.ManyToManyField(Contest)

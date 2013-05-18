@@ -1,4 +1,5 @@
-from django.conf.urls import patterns, include, url
+﻿from django.conf.urls import patterns, include, url
+from django.conf import settings
 from podium.views import PageView
 
 # Uncomment the next two lines to enable the admin:
@@ -18,3 +19,9 @@ urlpatterns = patterns('',
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
 )
+
+if settings.DEBUG:
+    # Устанавливаем настройки для обработки картинок, загруженных пользователем
+    urlpatterns += patterns('',
+        (r'^' + settings.MEDIA_URL + '(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_URL}),
+    )

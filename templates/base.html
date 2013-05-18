@@ -31,6 +31,15 @@
     </script>
     <!-- End Fancybox -->
 
+    <script type = "text/javascript">
+    $(document).ready(function(){
+        $('.button').click(function() {
+            var index = $('.button').index(this);
+            $('.text-show:eq(' + index + ')').slideToggle(600);
+        });
+    });
+    </script> 
+
 </head>
 
 <body>
