@@ -1,6 +1,6 @@
 from django.conf.urls import patterns, include, url
 from django.views.generic import DetailView, ListView
-from collection.models import Collection, Author, Vuz, Nomination
+from collection.models import Collection, Author, Vuz, Nomination, Prizer
 from collection.views import CollectionVuzListView, AuthorDetailView, CollectionNominationListView
 
 urlpatterns = patterns('',
@@ -52,5 +52,12 @@ urlpatterns = patterns('',
     url(r'^author/(?P<pk>\d+)/$',
         AuthorDetailView.as_view(),
         name="author_detail"),
+
+    #/collection/prizers
+    url(r'^prizers/$', ListView.as_view(
+        queryset=Prizer.objects.all(),
+        context_object_name='prizer_list',
+        template_name='collection/prizer_list.html'),
+        name="prizer_list"),
 
 )

@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <h2>Список призеров</h2>
+
+    {% with prizer_list=prizer_list|dictsortreversed:"contest.year" %}
+    
+    {% with prizer_list=prizer_list|dictsort:"nomination.title" %}
+
+
+    {% for prizer in prizer_list %}
+
+        {% ifchanged %}
+            <h2>Год {{ prizer.contest.year }}</h2>
+        {% endifchanged %}
+
+        {% ifchanged %}
+            <h3>{{ prizer.nomination.title }}</h3>
+        {% endifchanged %}
+        <div>
+            <h4>Место {{ prizer.place }}</h4>
+
+            <h4>{{ prizer.collection.title }}</h4>
+
+        </div>
+
+    {% endfor %}
+
+
+    {% endwith %}
+
+    {% endwith %}
+    
+{% endblock %}

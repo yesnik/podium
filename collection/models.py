@@ -68,5 +68,25 @@ class Collection(models.Model):
         verbose_name = 'Коллекция'
         verbose_name_plural = 'Коллекции'
 
-        
 
+PLACE_CHOICES = (
+    (1, u'1 место'),
+    (2, u'2 место'),
+    (3, u'3 место'),
+)
+        
+class Prizer(models.Model):
+    """
+    Коллекция, победивщая в конкурсе в какой-то номинации
+    """
+    contest = models.ForeignKey(Contest, verbose_name=u'Конкурс')
+    nomination = models.ForeignKey(Nomination, verbose_name=u'Номинация')
+    place = models.IntegerField(choices=PLACE_CHOICES, verbose_name=u'Место')
+    collection = models.ForeignKey(Collection, verbose_name=u'Коллекция')
+    
+    def __unicode__(self):
+        return self.collection.title
+        
+    class Meta:
+        verbose_name = 'Призер'
+        verbose_name_plural = 'Призеры'

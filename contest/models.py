@@ -10,11 +10,12 @@ class Contest(models.Model):
     description = models.TextField(verbose_name='Описание конкурса')
 
     def __unicode__(self):
-        return self.title
+        return unicode(self.year + " " + self.title)
         
     class Meta:
         verbose_name = 'Конкурс'
         verbose_name_plural = 'Конкурсы'
+        ordering = ('year', )
 
 
 class Jury(models.Model):
