@@ -4,21 +4,23 @@
 
     <h2>Список призеров</h2>
 
-    {% for item in prizer_year_list %}
-        <h2>Год {{ item.year }}</h2>
-        {% for prizer in item.prizer_list|dictsort:'nomination.title' %}
-            {% ifchanged %}
-                <h3>Номинация {{ prizer.nomination.title }}</h3>
-            {% endifchanged %}
+    {% for prizer in prizer_year_list|dictsort:'nomination.title' %}
 
-            <h3>Место {{ prizer.place }}</h3>
+        {% ifchanged %}
+            <h3>{{ prizer.nomination.title }}</h3>
+        {% endifchanged %}
+        <div>
+        <h4>Место {{ prizer.place }}</h4>
+        <h5>{{ prizer.collection.title }}</h5>
+        </div>
+    {% endfor %}
 
-            <h5>{{ prizer.collection.title }}</h5>
+    <h3>Призеры прошлых лет</h3>
 
-        {% empty %}
-            <p>Для данного года призеров не найдено.</p>
-        {% endfor %}
-
+    {% for year in years_list %}
+        <p><a>{{ year }}</a></p>
+    {% empty %}
+        <p>Призеров прошлых лет не найдено</p>
     {% endfor %}
     
 {% endblock %}

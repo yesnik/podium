@@ -1,7 +1,7 @@
 from django.conf.urls import patterns, include, url
 from django.views.generic import DetailView, ListView
 from collection.models import Collection, Author, Vuz, Nomination, Prizer
-from collection.views import CollectionVuzListView, AuthorDetailView, CollectionNominationListView, PrizerYearsListView
+from collection.views import CollectionVuzListView, AuthorDetailView, CollectionNominationListView, PrizerLastYearListView
 
 urlpatterns = patterns('',
 
@@ -54,7 +54,7 @@ urlpatterns = patterns('',
         name="author_detail"),
 
     #/collection/prizers
-    url(r'^prizers/$', PrizerYearsListView.as_view()),
+    url(r'^prizers/$', PrizerLastYearListView.as_view()),
         
 
 )
