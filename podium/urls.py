@@ -13,6 +13,9 @@ urlpatterns = patterns('',
     url(r'^collection/', include('collection.urls')),
     url(r'', include('contest.urls')),
 
+    # Setting for application 'attachments' for serving files
+    url(r'^'+settings.MEDIA_ROOT+'attachments/', include('attachments.urls')),
+
     # Uncomment the admin/doc line below to enable admin documentation:
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
@@ -23,5 +26,5 @@ urlpatterns = patterns('',
 if settings.DEBUG:
     # Устанавливаем настройки для обработки картинок, загруженных пользователем
     urlpatterns += patterns('',
-        (r'^' + settings.MEDIA_URL + '(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_URL}),
+        (r'^' + settings.MEDIA_ROOT + '(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
     )

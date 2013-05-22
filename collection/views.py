@@ -65,3 +65,27 @@ class PrizerLastYearListView(ListView):
         context['years_list'] = years_list[1:]
 
         return context
+
+
+class PrizerYearListView(ListView):
+    """
+    Список победителей конкурса определенного года
+    """
+    model = Prizer
+    context_object_name='prizer_list'
+    template_name='collection/prizer_year_list.html'
+
+    def get_context_data(self, *args, **kwargs):
+        
+        year = self.kwargs['year']
+        print year
+
+        try:
+            prizer_year_list = Prizer.objects.filter(contest__year=year).order_by('place')
+        except:
+            prizer_year_list = []
+
+        context = super(PrizerYearListView, self).get_context_data(**kwargs)
+        context['prizer_year_list'] = prizer_year_list
+
+        return context

@@ -1,5 +1,10 @@
-﻿from django.contrib import admin
+﻿# -*- coding:utf-8 -*-
+
+from django.contrib import admin
 from collection.models import Collection, Author, Vuz, Nomination, Prizer
+
+# Импортируем настройки приложения django-attachments
+from attachments.admin import AttachmentInlines
 
 
 class AuthorAdmin(admin.ModelAdmin):
@@ -9,6 +14,7 @@ class AuthorAdmin(admin.ModelAdmin):
 
 
 class CollectionAdmin(admin.ModelAdmin):
+    inlines = [AttachmentInlines]
     filter_horizontal = ('author', 'nomination', 'contest',)
     ordering = ('-contest__year',)
 

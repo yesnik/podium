@@ -14,13 +14,5 @@
         <p><a href="{% url 'collection_detail' pk=prizer.collection.id %}">{{ prizer.collection.title }}</a></p>
         </div>
     {% endfor %}
-
-    <h3>Призеры прошлых лет</h3>
-
-    {% for year in years_list %}
-        <p><a href="{% url 'prizers_by_year' year=year %} ">{{ year }}</a></p>
-    {% empty %}
-        <p>Призеров прошлых лет не найдено</p>
-    {% endfor %}
     
 {% endblock %}

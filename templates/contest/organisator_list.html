@@ -17,7 +17,7 @@
             <div class="organisators">
 
                 {% thumbnail organisator.photo "65x86" crop="center" as im %}
-                    <img src="/{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="{{ jury.fio }}">
+                    <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="{{ jury.fio }}">
                 {% endthumbnail %}
                 <h3>{{ organisator.fio }}</h3>
                 <p>{{ organisator.position }}</p>

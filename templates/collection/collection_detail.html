@@ -4,7 +4,23 @@
 
 {% block content %}
 
-	<h2>{{ collection.title|cut:'а' }}</h2>
+	<h2>{{ collection.title }}</h2>
+	
+	{% load attachments_tags %}
+	{% load thumbnail %}
+
+	{% get_attachments_for collection as "attachments_list" %}
+
+	{% for attachment in attachments_list %}
+		<a href="{{ attachment.attachment_file.url }}" alt="{{ attachment.filename }}">
+		{% thumbnail attachment.attachment_file "100x150" crop="center" as im %}
+            <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="">
+        {% endthumbnail %}
+    	</a>
+		
+
+	{% endfor %}
+
 	<h4>Авторы:</h4>
 	<ul>
 	{% for author in collection.author.all %}
