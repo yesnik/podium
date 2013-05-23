@@ -200,6 +200,17 @@ body{
 .anketa:hover{
 	color:#fe3C3C !important;
 }
+.block_prizer{
+	border: 1px solid #13161F;
+    float: left;
+    margin: 0 2px 2px;
+    padding: 5px;
+    text-align: center;
+    width: 137px;
+}
+.block_prizer > p {
+    text-align: center !important;
+}
 .button{
 	font-size:14px;
 	text-align:left;

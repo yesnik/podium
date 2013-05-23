@@ -1,0 +1,7 @@
+<div class="block_prizer">
+<h4>Место {{ prizer.place }}</h4>
+<p><a href="{% url 'collection_detail' pk=prizer.collection.id %}">
+    {{ prizer.collection.title }}
+    </a>
+</p>
+</div>

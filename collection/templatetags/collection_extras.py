@@ -31,5 +31,8 @@ def getCollectionSum(value):
     sum = Collection.objects.filter(author__vuz__id = value)
     return len(sum)
 
-  
-    
+
+@register.inclusion_tag('collection/block_prizer.html')
+def show_prizer(prizer):
+    "Show prizer template in prizer list"
+    return {'prizer': prizer}
