@@ -16,6 +16,7 @@ class AuthorAdmin(admin.ModelAdmin):
 class CollectionAdmin(admin.ModelAdmin):
     inlines = [AttachmentInlines]
     filter_horizontal = ('author', 'nomination', 'contest',)
+    list_display = ('title', 'get_nominations', )
     ordering = ('-contest__year',)
 
 

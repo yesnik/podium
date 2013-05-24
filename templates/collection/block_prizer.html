@@ -4,4 +4,19 @@
     {{ prizer.collection.title }}
     </a>
 </p>
+    {% load attachments_tags %}
+    {% load thumbnail %}
+
+    {% get_attachments_for prizer.collection as "attachments_list" %}
+
+    {% with attachments_list.0 as attachment %}
+
+        <a href="{{ attachment.attachment_file.url }}" alt="{{ attachment.filename }}">
+        {% thumbnail attachment.attachment_file "100x150" crop="center" as im %}
+            <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="">
+        {% endthumbnail %}
+        </a>
+        
+    {% endwith %}
+
 </div>

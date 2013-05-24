@@ -63,6 +63,15 @@ class Collection(models.Model):
     
     def __unicode__(self):
         return self.title
+
+    def get_nominations(self):
+        nomination_list = self.nomination.get_query_set()
+        nominations_str = ''
+        for nomination in nomination_list:
+            nominations_str += ', ' + nomination.title
+        return nominations_str.lstrip(', ')
+    # В админке поле будет называться не get_nomination, а Номинации
+    get_nominations.short_description = 'Номинации'
         
     class Meta:
         verbose_name = 'Коллекция'
