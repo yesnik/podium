@@ -1,13 +1,31 @@
 <div class="block_prizer">
-<h4>Место {{ prizer.place }}</h4>
-<p><a href="{% url 'collection_detail' pk=prizer.collection.id %}">
-    {{ prizer.collection.title }}
-    </a>
-</p>
+    {% if prizer.place %}
+        <h4>Место {{ prizer.place }}</h4>
+    {% endif %}
+
+    
+
+    {% if prizer.collection.title %}
+    <p><a href="{% url 'collection_detail' pk=prizer.collection.id %}">
+        {{ prizer.collection.title }}
+        </a>
+    </p>
+    {% endif %}
+
+    {% if prizer.fio %}
+        <p>{{ prizer.fio }}</p>
+    {% endif %}
+
     {% load attachments_tags %}
     {% load thumbnail %}
 
-    {% get_attachments_for prizer.collection as "attachments_list" %}
+    <!-- Если переменная определена, значит перед нами коллекция,
+    если нет - победитель, у которого нет свойства collection -->
+    {% if prizer.collection %}
+        {% get_attachments_for prizer.collection as "attachments_list" %}
+    {% else %}
+        {% get_attachments_for prizer as "attachments_list" %}
+    {% endif %}
 
     {% with attachments_list.0 as attachment %}
 

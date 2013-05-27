@@ -1,5 +1,6 @@
 ﻿from django.views.generic import DetailView, ListView
 from collection.models import Vuz, Collection, Author, Prizer, Contest
+from contest.models import Winner
 
 
 class CollectionVuzListView(ListView):
@@ -60,8 +61,15 @@ class PrizerLastYearListView(ListView):
         except:
             prizer_year_list = []
 
+        try:
+            winner_year_list = Winner.objects.filter(contest__year=years_list[0])
+            print winner_year_list
+        except:
+            winner_year_list = []
+
         context = super(PrizerLastYearListView, self).get_context_data(**kwargs)
         context['prizer_year_list'] = prizer_year_list
+        context['winner_year_list'] = winner_year_list
         context['years_list'] = years_list[1:]
 
         return context
@@ -78,14 +86,15 @@ class PrizerYearListView(ListView):
     def get_context_data(self, *args, **kwargs):
         
         year = self.kwargs['year']
-        print year
 
-        try:
-            prizer_year_list = Prizer.objects.filter(contest__year=year).order_by('place')
-        except:
-            prizer_year_list = []
+        # Список коллекций-призеров данного года
+        prizer_year_list = Prizer.objects.filter(contest__year=year).order_by('place')
+
+        # Список победителей конкурса данного года - Мисс и Мистер подиум
+        winner_year_list = Winner.objects.filter(contest__year=year)
 
         context = super(PrizerYearListView, self).get_context_data(**kwargs)
         context['prizer_year_list'] = prizer_year_list
+        context['winner_year_list'] = winner_year_list
 
         return context

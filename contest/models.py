@@ -86,3 +86,32 @@ class Organisator(models.Model):
     class Meta:
         verbose_name = 'Организатор'
         verbose_name_plural = 'Организаторы'
+
+
+class Winner(models.Model):
+    """
+    Победитель конкурса - Мисс / Мистер Подиум
+    """
+    fio = models.CharField(max_length=150, verbose_name='Ф.И.О.')
+    vuz = models.ForeignKey('collection.Vuz', blank=True, verbose_name=u'Вуз')
+    contest = models.ManyToManyField(Contest, verbose_name=u'Конкурс')
+    nomination = models.ForeignKey('collection.Nomination', verbose_name=u'Номинация')
+    about = models.TextField(verbose_name='О победителе', blank=True)
+
+    def __unicode__(self):
+        return self.fio
+
+    def get_contest_names(self):
+        contest_list = self.contest.get_query_set()
+        list = []
+        if contest_list:
+            for contest in contest_list:
+                list.append(contest.title)
+            return ', '.join(list)
+
+    # В админке поле будет называться не get_nomination, а Номинации
+    get_contest_names.short_description = 'Конкурсы'
+        
+    class Meta:
+        verbose_name = 'Мисс / Мистер Подиум'
+        verbose_name_plural = 'Мисс / Мистер Подиум'

@@ -40,8 +40,9 @@ class Nomination(models.Model):
     Номинация, по которой проводится конкурс
     """
     title = models.CharField(max_length=150, verbose_name = 'Название номинации')
-    nomination_url = models.SlugField(verbose_name='Ярлык для использования в url')
-    description = models.TextField(verbose_name='Описание номинации')
+    nomination_url = models.SlugField(verbose_name='Ярлык для использования в url', 
+        help_text='Например, one_model или teatr_mod')
+    description = models.TextField(verbose_name='Описание номинации', blank=True)
 
     def __unicode__(self):
         return self.title

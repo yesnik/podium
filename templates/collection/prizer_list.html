@@ -3,6 +3,7 @@
 {% block content %}
 
     {% load collection_extras %}
+    
 
     <h2>Список призеров</h2>
 
@@ -17,6 +18,18 @@
 
     {% endfor %}
 
+    {% if winner_year_list %}
+        <div class="clear"></div>
+
+        {% for winner in winner_year_list %}
+            <h3>{{ winner.nomination.title }}</h3>
+            {% show_prizer winner %}
+            <div class="clear"></div>
+        {% endfor %}
+
+    {% endif %}
+
+    <div class="clear"></div>
     <h3>Призеры прошлых лет</h3>
 
     {% for year in years_list %}
