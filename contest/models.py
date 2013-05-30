@@ -103,6 +103,7 @@ class Winner(models.Model):
 
     def get_contest_names(self):
         contest_list = self.contest.get_query_set()
+        print contest_list
         list = []
         if contest_list:
             for contest in contest_list:

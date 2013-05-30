@@ -1,5 +1,11 @@
 ﻿from django.contrib import admin
 from page.models import Page
 
+# Импортируем настройки приложения django-attachments
+from attachments.admin import AttachmentInlines
 
-admin.site.register(Page)
+class PageAdmin(admin.ModelAdmin):
+    inlines = [AttachmentInlines]
+    list_display = ('title', )
+
+admin.site.register(Page, PageAdmin)

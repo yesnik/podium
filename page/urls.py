@@ -4,6 +4,6 @@ from page.views import PageDetailView
 
 urlpatterns = patterns('',
 
-    url(r'^nik/$', PageDetailView.as_view()),
-    url(r'^(?P<pk>\d+)/$', PageDetailView.as_view()),
+    url(r'nik/$', PageDetailView.as_view()),
+    url(r'(?P<page_url>\w+)/$', PageDetailView.as_view()),
 )

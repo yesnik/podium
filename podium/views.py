@@ -17,10 +17,11 @@ class PageView(TemplateView):
         context = super(PageView, self).get_context_data(**kwargs)
 
         try:
-            page = Page.objects.get(pk=1)
+            page = Page.objects.get(page_url='main')
             context['page'] = page
         except ObjectDoesNotExist:
             context['page'] = {'content':'Страница не найдена'}
+            
         try:
             context['sidebar'] = StaticText.objects.get(alias = 'sidebar')
         except ObjectDoesNotExist:

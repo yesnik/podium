@@ -155,7 +155,7 @@ body{
 }
 #menu ul li{
 	float:left;
-	padding: 7px 21px;
+	padding: 7px 16px;
 	list-style:none;
 }
 #menu ul li:hover{
