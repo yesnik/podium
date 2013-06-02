@@ -1,4 +1,6 @@
-﻿from django.core.context_processors import request
+﻿# -*- coding: utf-8 -*-
+
+from django.core.context_processors import request
 
 
 def menu(request):

@@ -1,4 +1,6 @@
-﻿from django.contrib import admin
+﻿# -*- coding: utf-8 -*-
+
+from django.contrib import admin
 from contest.models import (Contest, Jury, Sponsor, 
     Organisator, OrganisatorArea, Winner)
 

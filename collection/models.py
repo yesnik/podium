@@ -1,4 +1,6 @@
-﻿from django.db import models
+﻿# -*- coding: utf-8 -*-
+
+from django.db import models
 from contest.models import Contest
 
 
@@ -73,6 +75,15 @@ class Collection(models.Model):
         return nominations_str.lstrip(', ')
     # В админке поле будет называться не get_nomination, а Номинации
     get_nominations.short_description = 'Номинации'
+
+    def get_contest_years(self):
+        contest_list = self.contest.get_query_set()
+        contests_str = ''
+        for contest in contest_list:
+            contests_str += ', ' + str(contest.year)
+        return contests_str.lstrip(', ')
+    # В админке поле будет называться не get_nomination, а Номинации
+    get_contest_years.short_description = 'Год конкурса'
         
     class Meta:
         verbose_name = 'Коллекция'

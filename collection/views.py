@@ -1,4 +1,6 @@
-﻿from django.views.generic import DetailView, ListView
+﻿# -*- coding: utf-8 -*-
+
+from django.views.generic import DetailView, ListView
 from collection.models import Vuz, Collection, Author, Prizer, Contest
 from contest.models import Winner
 
@@ -27,6 +29,36 @@ class CollectionNominationListView(ListView):
     def get_queryset(self):
         nomination = self.kwargs['nomination_url']
         return Collection.objects.filter(nomination__nomination_url=nomination)
+
+
+class CollectionYearListView(ListView):
+    """
+    Список коллекций определенного года
+    """
+    context_object_name='collection_list'
+    template_name='collection/collection_list.html'
+
+    show_active_year = False
+
+    def get_queryset(self):
+        # Показываем участников конкурса текущего года
+        if self.show_active_year:
+            # Вызываем метод модели, чтобы определить активный год
+            year = Contest.get_active_year()
+            collections = Collection.objects.filter(contest__year=year)
+        else:
+            collections = Collection.objects.filter(contest__year=self.kwargs['year'])
+
+        return collections
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(CollectionYearListView, self).get_context_data(**kwargs)
+        try:
+            context['year'] = self.kwargs['year']
+        except KeyError:
+            pass
+        return context
+    
 
 
 class AuthorDetailView(DetailView):

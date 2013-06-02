@@ -1,4 +1,6 @@
-﻿# Django settings for podium project.
+﻿# -*- coding: utf-8 -*-
+
+# Django settings for podium project.
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG

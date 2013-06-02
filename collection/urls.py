@@ -1,17 +1,21 @@
+﻿# -*- coding: utf-8 -*-
+
 from django.conf.urls import patterns, include, url
 from django.views.generic import DetailView, ListView
 from collection.models import Collection, Author, Vuz, Nomination, Prizer
 from collection.views import CollectionVuzListView, AuthorDetailView, \
-    CollectionNominationListView, PrizerLastYearListView, PrizerYearListView
+    CollectionNominationListView, PrizerLastYearListView, PrizerYearListView, \
+    CollectionYearListView
 
 urlpatterns = patterns('',
 
     #/collection/
-    url(r'^$', ListView.as_view(
-        queryset=Collection.objects.all(),
-        context_object_name='collection_list',
-        template_name='collection/collection_list.html'),
+    url(r'^$', CollectionYearListView.as_view(show_active_year=True),
         name="collection_list"),
+
+    #/collection/2012
+    url(r'^(?P<year>\d{4})/$', CollectionYearListView.as_view(), 
+        name="collection_year_list"),
 
     #/collection/vuz
     url(r'^vuz/$', ListView.as_view(

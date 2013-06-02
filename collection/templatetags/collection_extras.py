@@ -1,3 +1,5 @@
+﻿# -*- coding: utf-8 -*-
+
 from django import template
 from collection.models import Author, Collection
 

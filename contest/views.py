@@ -1,4 +1,6 @@
-﻿from django.views.generic import DetailView, ListView
+﻿# -*- coding: utf-8 -*-
+
+from django.views.generic import DetailView, ListView
 from contest.models import Jury, Contest, Sponsor
 
 

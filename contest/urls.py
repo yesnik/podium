@@ -1,4 +1,6 @@
-﻿from django.conf.urls import patterns, include, url
+﻿# -*- coding: utf-8 -*-
+
+from django.conf.urls import patterns, include, url
 from django.views.generic import DetailView, ListView
 from contest.models import Jury, Organisator
 from contest.views import JuryContestListView, JuryYearsListView, SponsorYearsListView

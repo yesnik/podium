@@ -1,4 +1,6 @@
-﻿from django.views.generic import TemplateView, ListView, DetailView
+﻿# -*- coding: utf-8 -*-
+
+from django.views.generic import TemplateView, ListView, DetailView
 from django.core.exceptions import ObjectDoesNotExist
 
 from page.models import Page

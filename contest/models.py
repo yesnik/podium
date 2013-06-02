@@ -1,4 +1,6 @@
-﻿from django.db import models
+﻿# -*- coding: utf-8 -*-
+
+from django.db import models
 
 
 class Contest(models.Model):
@@ -11,6 +13,17 @@ class Contest(models.Model):
 
     def __unicode__(self):
         return unicode(self.year + " " + self.title)
+
+    
+    #@staticmethod
+    @classmethod
+    def get_active_year(cls):
+        contests = Contest.objects.all().order_by('-year')
+        # Если конкурсов не найдется, возвратим None
+        if len(contests) > 0:
+            return contests[0].year
+        else:
+            return None
         
     class Meta:
         verbose_name = 'Конкурс'
