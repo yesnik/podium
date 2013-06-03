@@ -8,7 +8,19 @@
         <li>
             <a href="{% url "collection_detail" pk=collection.id %}">{{ collection.title }}</a> ({{ collection.author.all|join:', ' }})
         </li>
+    {% empty %}
+        <li>Для данного года коллекций не найдено</li>
     {% endfor %}
     
     </ol>
+
+    {% if other_years_list %}
+        <h3>Коллекции других лет</h3>
+        <ul>
+        {% for year in other_years_list %}
+            <li><a href="{% url "collection_year_list" year=year %}">{{ year }}</a></li>
+        {% endfor %}
+        </ul>
+
+    {% endif %}
 {% endblock %}

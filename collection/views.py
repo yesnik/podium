@@ -39,6 +39,7 @@ class CollectionYearListView(ListView):
     template_name='collection/collection_list.html'
 
     show_active_year = False
+    other_years_list = []
 
     def get_queryset(self):
         # Показываем участников конкурса текущего года
@@ -47,7 +48,17 @@ class CollectionYearListView(ListView):
             year = Contest.get_active_year()
             collections = Collection.objects.filter(contest__year=year)
         else:
-            collections = Collection.objects.filter(contest__year=self.kwargs['year'])
+            year = self.kwargs['year']
+            collections = Collection.objects.filter(contest__year=year)
+
+        years_list = Contest.get_years()
+
+        try:
+            years_list.remove(int(year))
+        except ValueError:
+            pass
+
+        self.other_years_list = years_list
 
         return collections
 
@@ -57,6 +68,8 @@ class CollectionYearListView(ListView):
             context['year'] = self.kwargs['year']
         except KeyError:
             pass
+            
+        context['other_years_list'] = self.other_years_list
         return context
     
 

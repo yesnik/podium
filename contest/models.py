@@ -24,6 +24,11 @@ class Contest(models.Model):
             return contests[0].year
         else:
             return None
+
+    @classmethod
+    def get_years(cls):
+        years = [int(contest.year) for contest in Contest.objects.all().order_by('-year')]
+        return years
         
     class Meta:
         verbose_name = 'Конкурс'
