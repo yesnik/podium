@@ -64,4 +64,5 @@ urlpatterns = patterns('',
     #/collection/prizers/2013
     url(r'^prizers/(?P<year>\d{4})$', PrizerYearListView.as_view(),
         name="prizers_by_year"),
+
 )

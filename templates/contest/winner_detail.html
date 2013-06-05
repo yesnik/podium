@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <h2>{{ winner.nomination }} </h2>
+    <h3>{{ winner.fio }}</h3>
+
+    {% load attachments_tags %}
+    {% load thumbnail %}
+
+    {% get_attachments_for winner as "attachments_list" %}
+
+    {% for attachment in attachments_list %}
+        <a href="{{ attachment.attachment_file.url }}" alt="{{ attachment.filename }}">
+        {% thumbnail attachment.attachment_file "100x150" crop="center" as im %}
+            <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="">
+        {% endthumbnail %}
+        </a>  
+    {% endfor %}
+
+    <h4>Вуз</h4>
+    <p>{{ winner.vuz }}</p>
+    <h4>Участник конкурсов</h4>
+    <ul>
+    {% for contest in winner.contest.all %}
+        <li>{{ contest.title }} <i>({{ contest.year }})</i></li>
+    {% endfor %}
+    </ul>
+    <h4>О себе</h4>
+    <p>{{ winner.about }}</p>
+    
+{% endblock %}

@@ -13,7 +13,9 @@
     {% endif %}
 
     {% if prizer.fio %}
-        <p>{{ prizer.fio }}</p>
+        <p>
+            <a href="{% url 'winner_detail' pk=prizer.id %}">{{ prizer.fio }}</a>
+        </p>
     {% endif %}
 
     {% load attachments_tags %}
