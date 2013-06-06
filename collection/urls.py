@@ -17,16 +17,7 @@ urlpatterns = patterns('',
     url(r'^(?P<year>\d{4})/$', CollectionYearListView.as_view(), 
         name="collection_year_list"),
 
-    #/collection/vuz
-    url(r'^vuz/$', ListView.as_view(
-        queryset=Vuz.objects.all(),
-        context_object_name='vuz_list',
-        template_name='collection/vuz_list.html'),
-        name="vuz_list"),
 
-    #/collection/vuz/vuz_url
-    url(r'^vuz/(?P<vuz>[a-zA-Z]+)/$', CollectionVuzListView.as_view(),
-        name="vuz_collections"),
 
     #/collection/nomination/ 
     url(r'^nomination/$', ListView.as_view(
@@ -38,6 +29,10 @@ urlpatterns = patterns('',
     #/collection/nomination/nomination_url
     url(r'^nomination/(?P<nomination_url>[a-zA-Z_]+)/$', CollectionNominationListView.as_view(),
         name="nomination_collections"),
+
+    # /collection/vuz/vuz_url
+    url(r'^vuz/(?P<vuz>[a-zA-Z]+)/$', CollectionVuzListView.as_view(),
+        name="vuz_collections"),
          
     #/collection/122   
     url(r'^(?P<pk>\d+)/$',

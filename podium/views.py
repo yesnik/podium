@@ -5,6 +5,7 @@ from django.core.exceptions import ObjectDoesNotExist
 
 from page.models import Page
 from statictxt.models import StaticText
+from collection.models import Collection, Vuz, Author
 
 
 class PageView(TemplateView):
@@ -35,3 +36,27 @@ class PageView(TemplateView):
             context['footer'] = {'content':'Define footer, please...'}
 
         return context
+
+
+class VuzYearListView(ListView):
+    """
+    Список вузов-участников определенного года
+    """
+    context_object_name='vuz_list'
+    template_name='collection/vuz_list.html'
+
+    def queryset(self):
+        
+        year = self.kwargs['year']
+        collections_year_list = Collection.objects.filter(contest__year=year)
+        vuz_list = []
+
+        for collection in collections_year_list:
+            for author in collection.author.all():
+                if author.vuz not in vuz_list:
+                    vuz_list.append(author.vuz)
+
+        return vuz_list
+
+        
+        
