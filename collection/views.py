@@ -1,6 +1,8 @@
 ﻿# -*- coding: utf-8 -*-
 
 from django.views.generic import DetailView, ListView
+from django.shortcuts import get_object_or_404
+
 from collection.models import Vuz, Collection, Author, Prizer, Contest
 from contest.models import Winner
 
@@ -71,7 +73,53 @@ class CollectionYearListView(ListView):
             
         context['other_years_list'] = self.other_years_list
         return context
-    
+
+
+class CollectionYearVuzListView(ListView):
+    """
+    Список коллекций вуза для определенного года
+    """
+    context_object_name = 'collection_list'
+    template_name = 'collection/collection_list.html'
+
+    show_active_year = False
+    other_years_list = []
+
+    def get_queryset(self):
+        # Показываем участников конкурса текущего года
+        if self.show_active_year:
+            # Вызываем метод модели, чтобы определить активный год
+            year = Contest.get_active_year()
+            collections = Collection.objects.filter(contest__year=year, author__vuz__vuz_url=self.kwargs['vuz'])
+        else:
+            year = self.kwargs['year']
+            collections = Collection.objects.filter(contest__year=year, author__vuz__vuz_url=self.kwargs['vuz'])
+
+        years_list = Contest.get_years()
+
+        try:
+            years_list.remove(int(year))
+        except ValueError:
+            pass
+
+        self.other_years_list = years_list
+
+        return collections
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(CollectionYearVuzListView, self).get_context_data(**kwargs)
+        try:
+            context['year'] = self.kwargs['year']
+        except KeyError:
+            pass
+
+        context['vuz'] = self.kwargs['vuz']
+        context['vuz_name'] = get_object_or_404(Vuz, vuz_url=self.kwargs['vuz']).name_short
+
+
+        context['other_vuz_years_list'] = self.other_years_list
+        return context
+
 
 
 class AuthorDetailView(DetailView):

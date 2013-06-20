@@ -21,7 +21,7 @@ class Contest(models.Model):
         contests = Contest.objects.all().order_by('-year')
         # Если конкурсов не найдется, возвратим None
         if len(contests) > 0:
-            return contests[0].year
+            return int(contests[0].year)
         else:
             return None
 

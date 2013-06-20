@@ -1,7 +1,9 @@
 ﻿{% extends "base.html" %}
 
 {% block content %}
-    <h2>Коллекции участников {{year}}</h2>
+    <h2>
+        Коллекции {{ vuz_name }} {{year}}
+    </h2>
 
     <ol>
     {% for collection in collection_list %}
@@ -21,6 +23,15 @@
             <li><a href="{% url "collection_year_list" year=year %}">{{ year }}</a></li>
         {% endfor %}
         </ul>
-
     {% endif %}
+
+    {% if other_vuz_years_list %}
+        <h3>Коллекции {{ vuz_name }} других лет</h3>
+        <ul>
+            {% for year in other_vuz_years_list %}
+                <li><a href="{% url "year_vuz_collections" year=year vuz=vuz %}">{{ year }}</a></li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
 {% endblock %}

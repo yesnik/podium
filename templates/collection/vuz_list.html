@@ -3,8 +3,6 @@
 {% block content %}
     <h2>Список вузов</h2>
     <ol>
-    
-    {% with count=555 %}
 
     {% load collection_extras %}
 
@@ -13,9 +11,21 @@
             {{ vuz.name }}
             (<a href="{% url "vuz_collections" vuz=vuz.vuz_url %}">коллекций: {{ vuz.id|getCollectionSum }}</a>)
         </li>
+    {% empty %}
+        <li>Для данного года участников не найдено</li>
     {% endfor %}
 
-    {% endwith %}
+    {% if year_list %}
+        <h3>Вузы-участники прошлых лет</h3>
+
+        <ul>
+            {% for year in year_list %}
+                <li><a href="{% url 'vuz_year_list' year=year %}">{{ year }}</a></li>
+            {% endfor %}
+        </ul>
+
+    {% endif %}
+
     
     </ol>
 {% endblock %}

@@ -5,7 +5,7 @@ from django.conf import settings
 from podium.views import PageView, VuzYearListView
 from django.views.generic import DetailView, ListView
 from collection.models import Collection, Author, Vuz
-from collection.views import CollectionVuzListView
+from collection.views import CollectionVuzListView, CollectionYearVuzListView
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
@@ -17,20 +17,30 @@ urlpatterns = patterns('',
     url(r'^page/', include('page.urls')),
     url(r'^collection/', include('collection.urls')),
 
-    #vuz/
-    url(r'^vuz/$', ListView.as_view(
+    #/vuz/
+    url(r'^vuz/$', VuzYearListView.as_view(),
+        name="vuz_year_list"),
+
+    #vuz/all
+    url(r'^vuz/all/$', ListView.as_view(
         queryset=Vuz.objects.all(),
         context_object_name='vuz_list',
         template_name='collection/vuz_list.html'),
         name="vuz_list"),
 
-    # vuz/vuz_url
-    url(r'^vuz/(?P<vuz>[a-zA-Z]+)/$', CollectionVuzListView.as_view(),
-        name="vuz_collections"),
+
 
     #/vuz/2013   
     url(r'^vuz/(?P<year>\d{4})/$', VuzYearListView.as_view(),
         name="vuz_year_list"),
+
+    #/vuz/2013/vuz_url
+    url(r'^vuz/(?P<year>\d{4})/(?P<vuz>[a-zA-Z]+)/$', CollectionYearVuzListView.as_view(),
+        name="year_vuz_collections"),
+
+    # vuz/vuz_url
+    url(r'^vuz/(?P<vuz>[a-zA-Z]+)/$', CollectionVuzListView.as_view(),
+        name="vuz_collections"),
 
     url(r'', include('contest.urls')),
 

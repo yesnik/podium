@@ -30,10 +30,6 @@ urlpatterns = patterns('',
     url(r'^nomination/(?P<nomination_url>[a-zA-Z_]+)/$', CollectionNominationListView.as_view(),
         name="nomination_collections"),
 
-    # /collection/vuz/vuz_url
-    url(r'^vuz/(?P<vuz>[a-zA-Z]+)/$', CollectionVuzListView.as_view(),
-        name="vuz_collections"),
-         
     #/collection/122   
     url(r'^(?P<pk>\d+)/$',
         DetailView.as_view(
