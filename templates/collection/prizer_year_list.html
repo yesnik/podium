@@ -5,7 +5,7 @@
     {% load collection_extras %}
 
 
-    <h2>Список призеров</h2>
+    <h2>Список призеров {{ year }}</h2>
 
     {% for prizer in prizer_year_list|dictsort:'nomination.title' %}
 
@@ -28,5 +28,14 @@
         {% endfor %}
 
     {% endif %}
+
+    <div class="clear"></div>
+    <h3>Призеры прошлых лет</h3>
+
+    {% for year in years_list %}
+        <p><a href="{% url 'prizers_by_year' year=year %} ">{{ year }}</a></p>
+    {% empty %}
+        <p>Призеров прошлых лет не найдено</p>
+    {% endfor %}
     
 {% endblock %}

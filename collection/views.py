@@ -143,8 +143,8 @@ class PrizerLastYearListView(ListView):
     Список победителей последнего прошедшего конкурса
     """
     model = Prizer
-    context_object_name='prizer_list'
-    template_name='collection/prizer_list.html'
+    context_object_name = 'prizer_list'
+    template_name = 'collection/prizer_list.html'
 
     def get_context_data(self, *args, **kwargs):
         years_list = [item['year'] for item in Contest.objects.values('year').order_by('-year')]
@@ -173,8 +173,8 @@ class PrizerYearListView(ListView):
     Список победителей конкурса определенного года
     """
     model = Prizer
-    context_object_name='prizer_list'
-    template_name='collection/prizer_year_list.html'
+    context_object_name = 'prizer_list'
+    template_name = 'collection/prizer_year_list.html'
 
     def get_context_data(self, *args, **kwargs):
         
@@ -187,7 +187,15 @@ class PrizerYearListView(ListView):
         winner_year_list = Winner.objects.filter(contest__year=year)
 
         context = super(PrizerYearListView, self).get_context_data(**kwargs)
+        context['year'] = year
         context['prizer_year_list'] = prizer_year_list
         context['winner_year_list'] = winner_year_list
+        years_list = Contest.get_years()
+        try:
+            years_list.remove(int(year))
+        except ValueError:
+            pass
+
+        context['years_list'] = years_list
 
         return context
