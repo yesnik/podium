@@ -58,7 +58,9 @@
                 {% load menubuilder %}
                 {% menu main_menu %}
                 {% for item in menuitems %}
-                    <li><a href="{{ item.url }}" title="{{ item.title|escape }}">{{ item.title }}</a></li>
+                    <li {% if item.current %}class="active"{% endif %}>
+                        <a href="{{ item.url }}" title="{{ item.title|escape }}">{{ item.title }}</a>
+                    </li>
                 {% endfor %}
             {% endblock %}
         </ul>
