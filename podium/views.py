@@ -43,8 +43,8 @@ class VuzYearListView(ListView):
     """
     Список вузов-участников определенного года
     """
-    context_object_name='vuz_list'
-    template_name='collection/vuz_list.html'
+    context_object_name = 'vuz_list'
+    template_name = 'collection/vuz_list.html'
 
     def queryset(self):
 
@@ -71,17 +71,14 @@ class VuzYearListView(ListView):
 
         if 'year' in self.kwargs:
             year = int(self.kwargs['year'])
+            context['year'] = year
         else:
             year = Contest.get_active_year()
+
         #Удаляем текущий год из списка, т.к. он уже отображается на странице
-
-        print type(year)
-
         if year in year_list:
             year_list.remove(year)
 
         context['year_list'] = year_list
-        return context
 
-        
-        
+        return context
