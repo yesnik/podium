@@ -63,7 +63,11 @@ class Collection(models.Model):
     nomination = models.ManyToManyField(Nomination, verbose_name=u'Номинация')
     contest = models.ManyToManyField(Contest, verbose_name=u'Конкурс(ы)')
     description = models.TextField(verbose_name=u'Описание коллекции')
-    
+
+    @staticmethod
+    def get_vuz_collections_by_year(vuz_url, year):
+        return Collection.objects.filter(contest__year=year, author__vuz__vuz_url=vuz_url)
+
     def __unicode__(self):
         return self.title
 

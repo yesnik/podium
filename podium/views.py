@@ -54,12 +54,21 @@ class VuzYearListView(ListView):
             year = int(self.kwargs['year'])
 
         collections_year_list = Collection.objects.filter(contest__year=year)
+
         vuz_list = []
+        _dict = {}
+        _list = []
 
         for collection in collections_year_list:
             for author in collection.author.all():
-                if author.vuz not in vuz_list:
-                    vuz_list.append(author.vuz)
+                if author.vuz not in _list:
+                    _list.append(author.vuz)
+                    _dict['vuz'] = author.vuz
+                    _dict['collection_amount'] = len(Collection.get_vuz_collections_by_year(author.vuz.vuz_url, year))
+                    vuz_list.append(_dict)
+                    _dict = {}
+
+        del _list
 
         return vuz_list
 

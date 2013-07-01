@@ -6,10 +6,10 @@
 
     {% load collection_extras %}
 
-    {% for vuz in vuz_list %}
+    {% for item in vuz_list %}
         <li>
-            {{ vuz.name }}
-            (<a href="{% url "vuz_collections" vuz=vuz.vuz_url %}">коллекций: {{ vuz.id|getCollectionSum }}</a>)
+            {{ item.vuz.name }}
+            (<a href="{% url "year_vuz_collections" vuz=item.vuz.vuz_url year=2013 %}">коллекций: {{ item.collection_amount }}</a>)
         </li>
     {% empty %}
         <li>Для данного года участников не найдено</li>
