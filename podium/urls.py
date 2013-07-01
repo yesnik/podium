@@ -5,7 +5,9 @@ from django.conf import settings
 from podium.views import PageView, VuzYearListView
 from django.views.generic import DetailView, ListView
 from collection.models import Collection, Author, Vuz
-from collection.views import CollectionVuzListView, CollectionYearVuzListView
+from collection.views import CollectionVuzListView, CollectionYearVuzListView, \
+    PrizerLastYearListView, PrizerYearListView
+
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
@@ -41,6 +43,13 @@ urlpatterns = patterns('',
     # vuz/vuz_url
     url(r'^vuz/(?P<vuz>[a-zA-Z]+)/$', CollectionVuzListView.as_view(),
         name="vuz_collections"),
+
+    #/prizers
+    url(r'^prizers/$', PrizerLastYearListView.as_view()),
+
+    #/prizers/2013
+    url(r'^prizers/(?P<year>\d{4})$', PrizerYearListView.as_view(),
+        name="prizers_by_year"),
 
     url(r'', include('contest.urls')),
 

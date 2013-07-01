@@ -49,11 +49,4 @@ urlpatterns = patterns('',
         AuthorDetailView.as_view(),
         name="author_detail"),
 
-    #/collection/prizers
-    url(r'^prizers/$', PrizerLastYearListView.as_view()),
-
-    #/collection/prizers/2013
-    url(r'^prizers/(?P<year>\d{4})$', PrizerYearListView.as_view(),
-        name="prizers_by_year"),
-
 )
