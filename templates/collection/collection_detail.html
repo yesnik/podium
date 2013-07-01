@@ -12,7 +12,7 @@
 	{% get_attachments_for collection as "attachments_list" %}
 
 	{% for attachment in attachments_list %}
-		<a href="{{ attachment.attachment_file.url }}" alt="{{ attachment.filename }}">
+		<a href="{{ attachment.attachment_file.url }}" rel="gallery" alt="{{ attachment.filename }}">
 		{% thumbnail attachment.attachment_file "100x150" crop="center" as im %}
             <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="">
         {% endthumbnail %}
