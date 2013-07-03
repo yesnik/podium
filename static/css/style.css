@@ -208,6 +208,9 @@ body{
     text-align: center;
     width: 137px;
 }
+.block_prizer:hover {
+    background: none repeat scroll 0 0 #1B1B1B;
+}
 .block_prizer > p {
     text-align: center !important;
 }
@@ -249,6 +252,11 @@ body{
 .header2{
 	background:#212121;
 	text-align:center !important;
+}
+.header_line {
+    background: none repeat scroll 0 0 #1E1E1E;
+    margin: 10px 0;
+    padding: 4px;
 }
 .iframe{
 	font-size:14px;

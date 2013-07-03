@@ -1,9 +1,8 @@
 <div class="block_prizer">
+
     {% if prizer.place %}
         <h4>Место {{ prizer.place }}</h4>
     {% endif %}
-
-    
 
     {% if prizer.collection.title %}
     <p><a href="{% url 'collection_detail' pk=prizer.collection.id %}">
@@ -31,7 +30,7 @@
 
     {% with attachments_list.0 as attachment %}
 
-        <a href="{{ attachment.attachment_file.url }}" alt="{{ attachment.filename }}">
+        <a href="{{ attachment.attachment_file.url }}" rel="gallery" alt="{{ attachment.filename }}">
         {% thumbnail attachment.attachment_file "100x150" crop="center" as im %}
             <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="">
         {% endthumbnail %}

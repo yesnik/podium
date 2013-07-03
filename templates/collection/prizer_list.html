@@ -11,7 +11,7 @@
 
         {% ifchanged %}
             <div class="clear"></div>
-            <h3>{{ prizer.nomination.title }}</h3>
+            <h3 class="header_line">{{ prizer.nomination.title }}</h3>
         {% endifchanged %}
         
         {% show_prizer prizer %}
@@ -22,7 +22,7 @@
         <div class="clear"></div>
 
         {% for winner in winner_year_list %}
-            <h3>{{ winner.nomination.title }}</h3>
+            <h3 class="header_line">{{ winner.nomination.title }}</h3>
             {% show_prizer winner %}
             <div class="clear"></div>
         {% endfor %}
