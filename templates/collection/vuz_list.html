@@ -9,7 +9,7 @@
     {% for item in vuz_list %}
         <li>
             {{ item.vuz.name }}
-            (<a href="{% url "year_vuz_collections" vuz=item.vuz.vuz_url year=2013 %}">коллекций: {{ item.collection_amount }}</a>)
+            (<a href="{% url "year_vuz_collections" vuz=item.vuz.vuz_url year=year %}">коллекций: {{ item.collection_amount }}</a>)
         </li>
     {% empty %}
         <li>Для данного года участников не найдено</li>
