@@ -80,9 +80,10 @@ class VuzYearListView(ListView):
 
         if 'year' in self.kwargs:
             year = int(self.kwargs['year'])
-            context['year'] = year
+
         else:
             year = Contest.get_active_year()
+        context['year'] = year
 
         #Удаляем текущий год из списка, т.к. он уже отображается на странице
         if year in year_list:

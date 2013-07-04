@@ -37,8 +37,8 @@ class CollectionYearListView(ListView):
     """
     Список коллекций определенного года
     """
-    context_object_name='collection_list'
-    template_name='collection/collection_list.html'
+    context_object_name = 'collection_list'
+    template_name = 'collection/collection_list.html'
 
     show_active_year = False
     other_years_list = []
