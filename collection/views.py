@@ -121,7 +121,6 @@ class CollectionYearVuzListView(ListView):
         return context
 
 
-
 class AuthorDetailView(DetailView):
     """
     Подробный просмотр информации об авторе

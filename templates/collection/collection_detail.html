@@ -35,6 +35,8 @@
 	{{collection|get_about}}
 
     <h4>Описание:</h4>
+    {% autoescape off %}
     <p>{{ collection.description }}</p>
+    {% endautoescape %}
 
 {% endblock %}

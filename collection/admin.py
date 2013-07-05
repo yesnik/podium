@@ -19,6 +19,12 @@ class CollectionAdmin(admin.ModelAdmin):
     list_display = ('title', 'get_nominations', 'get_contest_years',)
     ordering = ('-contest__year',)
 
+    class Media:
+        js = (
+            '/static/tiny_mce/tiny_mce.js',
+            '/static/tiny_mce/tiny_mce_init.js',
+        )
+
 
 class NominationAdmin(admin.ModelAdmin):
     list_display = ('title', 'nomination_url',)
